@@ -1,0 +1,54 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+
+      <div class="d-flex">
+      <h1 class="text-center">Post list ________</h1>
+
+      <!--results generals-->
+      <a href="{% url 'results' %}" class="display-5 ms-auto"
+      ><i class="fas fa-poll mx-1"></i
+      ></a>
+      </div>
+
+      <!--{{ posts }}-->
+
+      <hr />
+
+      {% for post in posts %}
+      <!-- post -->
+      <div class="card m-4">
+        <div class="card-header d-flex">
+          <strong>{{ post.title }} | @{{post.author}} </strong>
+          
+          <div class="ms-auto">
+            <!--detall-->
+            <a href="{% url 'post_detail' post.id %}" class="ms-auto"
+            ><i class="fa fa-eye mx-1"></i
+            ></a>
+            
+            <!--results-->
+            <a href="{% url 'post_results' post.id %}" class="ms-auto"
+            ><i class="fas fa-poll mx-1"></i
+            ></a>
+          </div>
+
+        </div>
+
+        <div class="card-body">{{ post.text|linebreaksbr }}</div>
+
+        <div class="card-footer text-muted">
+          <p>Publicat__ {{ post.created_date }}</p>
+        </div>
+      </div>
+      <!--fi post -->
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% endblock %}

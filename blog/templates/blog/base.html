@@ -1,0 +1,84 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- icones awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <script
+      src="https://kit.fontawesome.com/af74c6d29b.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <!--bootstrap static-->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'blog/bootstrap.css' %}"
+    />
+    <script src="{% static 'blog/bootstrap.bundle.js' %}"></script>
+
+    <!--djangoblog css-->
+    <link
+    rel="stylesheet"
+    type="text/css"
+    href="{% static 'blog/djangoblog.css' %}"
+  />
+
+    <title>djangoblog by aleon</title>
+  </head>
+
+  <body>
+    <main>
+      <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <div class="container">
+          <a class="navbar-brand" href="/">djangoblog by aleon</a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label=""
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <!-- Left Side Of Navbar -->
+            <ul class="navbar-nav me-auto"></ul>
+
+            <!-- Right Side Of Navbar -->
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="/">PostList</a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="/results">PostResults</a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="/postquery">PostQuery</a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link">aleon</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+      <main class="py-4">{% block content %} {% endblock %}</main>
+    </main>
+  </body>
+</html>

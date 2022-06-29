@@ -1,0 +1,51 @@
+{% extends 'blog/base.html' %} {% block content %}
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="d-flex">
+        <h1 class="text-center">General Results ________</h1>
+      </div>
+
+      <!--per agafar el primer-->
+      <!-- també va posts.0.title--> 
+      <div class="alert alert-success display-5 my-4" role="alert">
+      {% with posts|first as post %}
+      <h3>Winner <i class="fas fa-trophy text-success"></i> {{post.title}} </h3>
+      {% endwith %}
+      </div>
+
+      <div class="py-4">
+        <table class="table h5">
+          <tr>
+            <th>#</th>
+            <th>Post</th>
+            <th>Nota</th>
+            <th>Stars</th>
+          </tr>
+          {% for post in posts %}
+          <tr>
+            <td>{{forloop.counter}}</td>
+            <td>
+              <a href="{% url 'post_results' post.id %}">
+              {{ post.title }}
+              </a>
+            </td>
+            <td>{{ post.valoracio_mitja }}</td>
+            <td>
+              <!-- fa cadena ajustant x als caràcters de 'valor' -->
+              <!-- així farà loop de caràcters cadena-->
+              {% for i in "x"|ljust:post.valoracio_mitja %}
+              <i class="fas fa-star text-warning"></i>
+              {% endfor %}
+            </td>
+          </tr>
+          {% endfor %}
+        </table>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}

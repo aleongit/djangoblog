@@ -1,0 +1,108 @@
+{% extends 'blog/base.html' %} {% block content %}
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <h1 class="text-center">Post detail {{post.title}}___</h1>
+
+      {{ posts }}
+
+      <hr />
+
+      {% if post.created_date %}
+
+      <!--
+      <form method="POST" action="{% url 'votar' post.id %}">
+        {% csrf_token %}
+        
+          {% for k,v in form.fields.valor.choices %}
+             <input type="radio" name="vot" value="{{ v }}" id="{{ v }}" />
+             <label for="{{ v }}">☆</label>
+          {% endfor %}
+
+        <button type="submit" class="save btn btn-primary">Save</button>
+      </form>
+      -->
+
+      {% if form.valor.errors %}
+      <div class="alert alert-danger text-center display-5" role="alert">
+        {{ form.valor.errors }}
+      </div>
+      {% endif %}
+
+      {% if ok %}
+      <div class="alert alert-success text-center display-5" role="alert">
+        {{ ok }}
+      </div>
+      {% endif %}
+
+      {% if not ok %}
+      <!--form star rating-->
+      <form method="POST" action="{% url 'votar' post.id %}">
+        {% csrf_token %}
+        <div class="card m-4 d-flex justify-content-center p-1">
+          <div class="text-center">
+            <div class="rate">
+              <h6 class="mb-0">Valora aquest post!</h6>
+              <div class="rating">
+                <!--
+                <input type="radio" name="vot" value="5" id="5" />
+                <label for="5">☆</label>
+                <input type="radio" name="vot" value="4" id="4" />
+                <label for="4">☆</label>
+                <input type="radio" name="vot" value="3" id="3" />
+                <label for="3">☆</label>
+                <input type="radio" name="vot" value="2" id="2" />
+                <label for="2">☆</label>
+                <input type="radio" name="vot" value="1" id="1" />
+                <label for="1">☆</label>
+                -->
+                {% for k,v in form.fields.valor.choices %}
+                <input type="radio" name="valor" value="{{ v }}" id="{{ v }}" class="radio" />
+                <label for="{{ v }}">☆</label>
+                {% endfor %}
+
+              </div>
+
+              <button type="submit" class="btn btn-warning btn-block rating-submit">
+                Go go!
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
+      {% endif %}
+
+      <!-- post -->
+      <div class="card m-4">
+        <div class="card-header d-flex">
+          <strong>{{ post.title }} | @{{post.author}} </strong>
+          
+          <div class="ms-auto">
+            <!--detall-->
+            <a href="{% url 'post_detail' post.id %}" class="ms-auto"
+            ><i class="fa fa-eye mx-1"></i
+            ></a>
+            
+            <!--results-->
+            <a href="{% url 'post_results' post.id %}" class="ms-auto"
+            ><i class="fas fa-poll mx-1"></i
+            ></a>
+          </div>
+
+        </div>
+
+        <div class="card-body">{{ post.text|linebreaksbr }}</div>
+
+        <div class="card-footer text-muted">
+          <p>Publicat__ {{ post.created_date }}</p>
+        </div>
+      </div>
+      <!--fi post -->
+
+      {% else %} CASTANYA! {% endif %}
+    </div>
+  </div>
+</div>
+
+{% endblock %}

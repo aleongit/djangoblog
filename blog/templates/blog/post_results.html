@@ -1,0 +1,55 @@
+{% extends 'blog/base.html' %} {% block content %}
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="d-flex">
+        <h1 class="text-center">Post results {{ post }} ________</h1>
+      </div>
+
+      <div class="py-4">
+        <table class="table h4">
+          <tr>
+            <td>Valoració Mitja</td>
+            <td>{{ post.valoracio_mitja }}</td>
+            <td>
+              <!-- fa cadena ajustant x als caràcters de 'valor' -->
+              <!-- així farà loop de caràcters cadena-->
+              {% for i in "x"|ljust:post.valoracio_mitja %}
+              <i class="fas fa-star text-warning"></i>
+              {% endfor %}
+            </td>
+          </tr>
+        </table>
+      </div>
+
+      <!-- amb _set les valoracions del post
+      {{post.valoracio_set.all}}
+      -->
+
+      <table class="table">
+        <tr>
+          <th>Data</th>
+          <th>Nota</th>
+          <th>Stars</th>
+        </tr>
+        <!--dictsort i dictsortreversed per ordenar objectes per key-->
+        {% for val in post.valoracio_set.all|dictsortreversed:"data" %}
+        <tr>
+          <td>{{ val.data }}</td>
+          <td>{{ val.valor }}</td>
+          <td>
+            <!-- fa cadena ajustant x als caràcters de 'valor' -->
+            <!-- així farà loop de caràcters cadena-->
+            {% for i in "x"|ljust:val.valor %}
+            <i class="fas fa-star"></i>
+            {% endfor %}
+          </td>
+        </tr>
+        {% endfor %}
+      </table>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
