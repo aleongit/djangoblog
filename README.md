@@ -20,6 +20,7 @@ To run the demo locally, clone the repository and move into it:
 
 ## DB
 - create db and user djangoblog
+- configure db parameters in djangoblog\settings.py
 
 ## Run
 - cd djangoblog
