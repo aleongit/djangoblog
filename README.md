@@ -27,3 +27,17 @@ To run the demo locally, clone the repository and move into it:
 - python manage.py runserver
 - Open your browser and go to http://127.0.0.1:8000/
 
+
+![Screenshot](screenshots/1.png)
+
+![Screenshot](screenshots/2.png)
+
+![Screenshot](screenshots/3.png)
+
+![Screenshot](screenshots/4.png)
+
+![Screenshot](screenshots/5.png)
+
+![Screenshot](screenshots/6.png)
+
+![Screenshot](screenshots/7.png)
